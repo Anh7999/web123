@@ -1,0 +1,13 @@
+﻿@model IEnumerable<web12.Models.News>
+    <div class="twitter-in">
+        <h5>Tin Tuc - Su Kien</h5>
+        @foreach (var i in Model)
+        {
+            <div class="up-date">
+                <p>@i.name</p>
+                <p class="ago">@i.description</p>
+            </div>
+        }
+        <a href="#" class="tweets">Xem them</a>
+        <div class="clearfix"></div>
+    </div>

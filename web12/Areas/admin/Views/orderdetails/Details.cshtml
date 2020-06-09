@@ -1,0 +1,43 @@
+﻿@model web12.Models.orderdetail
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/admin/Views/Shared/_MyLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>orderdetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.quantily)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quantily)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.order.id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.order.id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.product.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.product.name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

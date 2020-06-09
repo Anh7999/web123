@@ -1,0 +1,10 @@
+﻿@model IEnumerable<web12.Models.menu>
+ <ul class="nav navbar-nav menu__list">
+<Li>
+    @foreach (var i in Model)
+    {
+        <li><a href="@ViewBag.meta/@i.meta">@i.name</a></li>
+    }
+</Li>
+
+

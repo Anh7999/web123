@@ -1,0 +1,15 @@
+﻿@model List<web12.Models.category>
+@foreach (var i in Model)
+{
+    
+    <ul class="resp-tabs-list">
+        <h3>
+            <a href="/@ViewBag.meta/@i.meta/">@i.name</a>
+        </h3>
+    </ul>
+    	<div class="resp-tabs-container">
+        @Html.Action("getProduct", "Default", new { id = @i.id, metatitle = @ViewBag.metatitle });
+         </div>
+    
+       
+}

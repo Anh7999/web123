@@ -1,0 +1,79 @@
+﻿@using web12.Help
+@model web12.Models.category
+@{
+    ViewBag.Title = "Danh Sách Sản Phâmr";
+    Layout = "~/Areas/admin/Views/Shared/_MyLayout.cshtml";
+}
+@section _Header
+{
+
+    <link href="~/Areas/admin/Content/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="~/Areas/admin/Content/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="~/Areas/admin/Content/css/sb-admin-2.min.css" rel="stylesheet">
+
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Quản Lý Sản Phẩm
+            </div>
+            <div class="panel-body">
+                <div class="bs-example" style="text-align:right;padding-bottom:10px;">
+                    <div class="btn-group">
+                        @Html.DropDownListFor(model => model.id, (SelectList)ViewBag.Category, "----Tấ cả sản phẩm----", new { @class = "from-conntrol", @id = "category" })
+                    </div>
+                    <div class="btn-group">
+                        @Html.NoEncodeActionLink("<span class='glyphicon glyphicon-plus'></span> Thêm mới", "Create", "Create", "products", routeValues: new { }, htmlAttributes: new { @class = "btn btn-primary" })
+                    </div>
+                </div>
+                <div id="getProduct"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section _Footer
+{
+    <script src="~/Areas/admin/Content/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Areas/admin/Content/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+
+        });
+    </script>
+    <script src="~/Areas/admin/Content/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Areas/admin/Content/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+    @*<script src="vendor/jquery-easing/jquery.easing.min.js"></script>*@
+
+
+    <script src="~/Areas/admin/Content/js/sb-admin-2.min.js"></script>
+    <script src="~/Areas/admin/Content/js/demo/datatables-demo.js"></script>
+    <script>
+          $(document).ready(function () {
+            function getProduct() {
+                var CategoryId = $('#category').val();
+                $.ajax({
+                    url: '@Url.Action("getProduct", "products")',
+                    type: "GET",
+                    data: { id: CategoryId },
+                    success: function (data) {
+                        $("#getProduct").html(data);
+                    },
+                    error: function (data) {
+                        alert("Có Lỗi");
+                    }
+                });
+            }
+            getProduct();
+            $("#category").change(function () {
+                getProduct();
+            })
+        });
+    </script>
+}
